@@ -109,8 +109,8 @@ func (g *GerritSSH) sshConnection(command string, buffer *bytes.Buffer) (string,
 		Auth: []ssh.AuthMethod{
 			ssh.PublicKeys(signer),
 		},
+                HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 	}
-        config.HostKeyCallback = ssh.InsecureIgnoreHostKey()
 
 	// Dial TCP
 	conn, err := ssh.Dial("tcp", g.URL, config)
